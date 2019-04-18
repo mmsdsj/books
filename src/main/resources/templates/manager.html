@@ -35,7 +35,7 @@
                             <a href="#panel-6" data-toggle="tab"><button class="btn btn-default" type="submit">读者查询</button></a>
                         </li>
                         <li>
-                            <a href="/indexHtml"><button class="btn btn-default">退出登录</button></a>
+                            <a href="/listBook.do"><button class="btn btn-default">退出登录</button></a>
                         </li>
                     </ul></div></div>
             <div class="tab-content col-md-8 column">
@@ -67,6 +67,10 @@
                                 <td th:text="${bookList.bpub}">bpub</td>
                                 <td th:text="${bookList.bprice}">bprice</td>
                                 <td th:text="${bookList.bintro}">bintro</td>
+                                <td>
+
+                                    <a th:href="@{delete.do(bIsbn=${bookList.bisbn})}">删除</a>
+                                </td>
                                 <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                 <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->

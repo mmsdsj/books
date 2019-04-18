@@ -115,16 +115,16 @@
     from  record
     where rname = #{rname}
   </select>
-  <update id="penalty" parameterType="com.lj.pojo.Record">
+<!--  <update id="penalty" parameterType="com.lj.pojo.Record">
     update record
-    set penalty = DATEDIFF(DAY,'1999/07/19','1999/07/19')
-    where indate = '2019/04/17'
-  </update>
-  <!--<update id="penalty">
-    update record
-    set penalty = (DATEDIFF(DD,'outdate',current_date())-30)*0.1
-    where DATEDIFF(DD,outdate,current_date())>1
+    set penalty = DATEDIFF('1997-06-18','1997/06/20')
+    where rname = 1
   </update>-->
+  <update id="penalty">
+    update record
+    set penalty = ((DATEDIFF(now(),outdate)-30)*0.1)
+    where DATEDIFF(now(),outdate) > 1
+  </update>
 
 
 </mapper>

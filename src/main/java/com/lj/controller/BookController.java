@@ -37,8 +37,8 @@ public class BookController {
     @ResponseBody
     public String addBooks(Book book){ return iBookService.addBooks(book);}*/
 
-    @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
-    public String updateBookHtml(){return "updateBook";}
+//    @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
+//    public String updateBookHtml(){return "updateBook";}
 
     @RequestMapping(value = "updateBook.do",method = RequestMethod.POST)
     @ResponseBody
