@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>读者页面</title>
+</head>
+<body>
+<div th:include="header :: copy"></div>
+
+<div class="col-md-12 column">
+    <div th:include="reader :: copy"></div>
+    <div class="col-md-8 column">
+        欢迎来到读者页面！
+
+    </div>
+</div>
+</body>
+</html>

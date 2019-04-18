@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>读者页面</title>
+</head>
+<body>
+<div th:include="header :: copy"></div>
+<div class="col-md-12 column">
+    <div class="col-md-2 column" th:fragment="copy">
+        你好,
+        <a th:text="${username}"></a>
+        <!--<p th:text="${rName}"></p>-->
+
+            <ul class="nav navbar-btn">
+                <li>
+                    <a href="/reader_listbook.do"><button class="btn btn-default">浏览图书</button></a>
+                </li>
+
+                <li>
+                    <button class="btn btn-default" type="submit">信息修改</button></a>
+                </li>
+
+                <li>
+                    <button class="btn btn-default" type="submit">查看借阅记录</button></a>
+                </li>
+                <li>
+                    <button class="btn btn-default">退出登录</button></a>
+                </li>
+            </ul>
+
+    </div>
+    <div class="col-md-8 column">
+        欢迎来到读者页面！
+    </div>
+</div>
+</body>
+</html>
