@@ -59,6 +59,8 @@ public class ReaderController {
             model.addAttribute("username",reader.getData().getRname());
             model.addAttribute("rAge",reader.getData().getRage());
             model.addAttribute("rpwd",reader.getData().getRpwd());
+            model.addAttribute("rsex",reader.getData().getRsex());
+
             /*session.getSession().setAttribute("username",rName);*/
             ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
@@ -87,6 +89,7 @@ public class ReaderController {
         //获取数据
         model.addAttribute("bookList", response1.getData());
         model.addAttribute("username",reader.getRname());
+        model.addAttribute("rsex",reader.getRsex());
         model.addAttribute("rAge",reader.getRage());
         model.addAttribute("rpwd",reader.getRpwd());
 
