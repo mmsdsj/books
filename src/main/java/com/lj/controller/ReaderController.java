@@ -68,6 +68,7 @@ public class ReaderController {
             /*session.getSession().setAttribute("username",rName);*/
             ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
+            model.addAttribute("totalPages",response.getData().getPages());
             //读者借阅记录
             iRecordService.penalty();//罚金
             ServerResponse<PageInfo> response1 = iRecordService.reader_record(1,15,reader.getData().getRname());

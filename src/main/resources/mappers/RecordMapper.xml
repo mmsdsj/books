@@ -122,8 +122,8 @@
   </update>-->
   <update id="penalty">
     update record
-    set penalty = ((DATEDIFF(now(),outdate)-30)*0.1)
-    where DATEDIFF(now(),outdate) > 1
+    set penalty = (DATEDIFF(now(),indate)*0.1)
+    where (DATEDIFF(now(),indate)) > 1
   </update>
 
 
