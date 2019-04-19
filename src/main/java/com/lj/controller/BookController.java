@@ -39,9 +39,9 @@ public class BookController {
 
     @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse  addBooks(Book book, MultipartFile bpic){
-        if (bpic != null) {
-            String newFileName = bpic.getOriginalFilename();
+    public ServerResponse  addBooks(Book book, MultipartFile file){
+        if (file != null) {
+            String newFileName = file.getOriginalFilename();
             String path = "src/main/resources/static/image";
             File fileRoot = new File(path);
             if (!fileRoot.exists()) {
@@ -49,7 +49,7 @@ public class BookController {
             }
             File targetFile = new File(fileRoot.getAbsolutePath(), newFileName);
             try {
-                bpic.transferTo(targetFile);
+                file.transferTo(targetFile);
             } catch (IOException e) {
                 e.printStackTrace();
             }

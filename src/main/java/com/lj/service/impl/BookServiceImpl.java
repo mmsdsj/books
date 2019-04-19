@@ -41,7 +41,7 @@ public class BookServiceImpl implements IBookService {
         if(result > 0){
             return "success";
         }else {
-            return "fail";
+            return "删除失败，这本书可能已经被删除啦！";
         }
     }
 //首页

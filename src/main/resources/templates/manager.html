@@ -67,6 +67,46 @@
                                 <td th:text="${bookList.bpub}">bpub</td>
                                 <td th:text="${bookList.bprice}">bprice</td>
                                 <td th:text="${bookList.bintro}">bintro</td>
+                                <td><!--图书修改模态框-->
+                                <a id="modal-908961" href="#modal-container-908961" role="button" class="btn" data-toggle="modal">修改</a>
+                                <div class="modal fade" id="modal-container-908961" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    图书修改页面
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    <form action="/updateBook.do" method="post">
+                                                        <div class="col-xs-4">
+
+                                                <p>isbn<input class="form-control" type="text" name="bisbn" th:value="${bookList.bisbn}"></p>
+                                                <p>书名<input class="form-control" type="text" name="bname" th:value="${bookList.bname}"></p>
+                                                <p>作者<input class="form-control" type="text" name="bwriter" th:value="${bookList.bwriter}"></p>
+                                                <p>数量<input class="form-control" type="text" name="bnumber" th:value="${bookList.bnumber}"></p>
+                                                <p>借出数量<input class="form-control" type="text" name="boutnumber" th:value="${bookList.boutnumber}"></p>
+                                                <p>类别<input class="form-control" type="text" name="bsort" th:value="${bookList.bsort}"></p>
+                                                <p>出版社<input class="form-control" type="text" name="bpub" th:value="${bookList.bpub}"></p>
+                                                <p>价钱<input class="form-control" type="text" name="bprice" th:value="${bookList.bprice}"></p>
+                                                <p>介绍<input class="form-control" type="text" name="bintro" th:value="${bookList.bintro}"></p>
+                                                <!--<p>图片<input type="file" name="bpic"></p>-->
+                                                <p><input class="btn btn-default" type="submit" value="修改图书信息"/></p>
+                                            </div>
+                                            </form>
+                                            </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                </td>
                                 <td>
 
                                     <a th:href="@{delete.do(bIsbn=${bookList.bisbn})}">删除</a>
