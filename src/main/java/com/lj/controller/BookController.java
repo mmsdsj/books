@@ -15,27 +15,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
 
 @Controller
 public class BookController {
     @Autowired
     private IBookService iBookService;
-
- /*   @RequestMapping(value = "indexHtml1", method = RequestMethod.GET)
+/*
+    @RequestMapping(value = "indexHtml1", method = RequestMethod.GET)
     public String indexHtml(){ return "index"; }
 
     @RequestMapping(value = "headerHtml.do", method = RequestMethod.GET)
-    public String headerHtml(){ return "header"; }
+    public String headerHtml(){ return "header"; }*/
 
     @RequestMapping(value = "bookHtml.do", method = RequestMethod.GET)
     public String bookHtml(){ return "book"; }
 
     @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
-    public String addBooks(Book book){ return iBookService.addBooks(book);}*/
+    public ServerResponse  addBooks(Book book, MultipartFile bpic){
+        if (bpic != null) {
+            String newFileName = bpic.getOriginalFilename();
+            String path = "src/main/resources/static/image";
+            File fileRoot = new File(path);
+            if (!fileRoot.exists()) {
+                fileRoot.mkdir();
+            }
+            File targetFile = new File(fileRoot.getAbsolutePath(), newFileName);
+            try {
+                bpic.transferTo(targetFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String savePath = "/image/" + newFileName;
+            book.setBpic(savePath);
+
+        }
+
+        return iBookService.addBooks(book);
+    }
 
 //    @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
 //    public String updateBookHtml(){return "updateBook";}

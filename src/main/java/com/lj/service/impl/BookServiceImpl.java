@@ -17,12 +17,13 @@ public class BookServiceImpl implements IBookService {
     @Autowired
     private BookMapper bookMapper;
 
-    public String addBooks(Book books) {
+    public ServerResponse  addBooks(Book books) {
         int result = bookMapper.insert(books);
         if (result > 0) {
-            return "success";
+            return ServerResponse.createBySuccessMessage("新增成功");
         }
-        return "fail";
+        return ServerResponse.createByErrorMessage("新增失败");
+
     }
 
     public String updateBook(Book books){

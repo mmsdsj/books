@@ -7,7 +7,7 @@ import com.lj.pojo.Book;
 import java.util.List;
 
 public interface IBookService {
-    String addBooks(Book book);
+    ServerResponse  addBooks(Book book);
     String updateBook(Book book);
     String delete(Integer bIsbn);
     ServerResponse<PageInfo> listBook(int pageNum, int pageSize);
