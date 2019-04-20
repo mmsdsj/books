@@ -96,7 +96,7 @@ public class BookController {
 
 
 
-//此为图书管理员图书浏览页面分页
+    //此为图书管理员图书浏览页面分页
     @RequestMapping(value = "/listBook_manager.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
     public String getAllBook_manager(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
@@ -151,11 +151,39 @@ public class BookController {
 
     }*/
 
-    @RequestMapping(value = "findBooks.do",method = RequestMethod.GET)
+   /* @RequestMapping(value = "findBooks.do",method = RequestMethod.GET)
     @ResponseBody
     public List<Book> findBooks(String bsearch){
         return iBookService.findBooks(bsearch);
 
+    }*/
+
+
+/*    @RequestMapping(value = "/findBooks.do", method = RequestMethod.GET)
+    public String searchBook( Model model,String bsearch,HttpSession session) {
+
+        session.setAttribute(Const.Book.CURRENT_BOOK,bsearch);
+        ServerResponse<PageInfo> response = iBookService.listBook(1,5);
+        model.addAttribute("bookSearchList", response.getData());
+        //获取分页尾页数据
+        model.addAttribute("totalPages",response.getData().getPages());
+        return "booksearch";
+    }*/
+
+    //查询图书
+    @RequestMapping(value = "/findBooks.do",method = RequestMethod.GET)
+    //pageNum是第几页，pageSize是每页显示几条数据
+    public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "30") int pageSize, Model model,String bsearch,HttpSession session){
+
+        ServerResponse<PageInfo> response = iBookService.findBooks(pageNum,pageSize,bsearch);
+        model.addAttribute("bookSearchList", response.getData().getList());
+
+        //获取分页数据
+        model.addAttribute("ServerResponse",response);
+        model.addAttribute("pageNum",pageNum);
+        model.addAttribute("totalPages",response.getData().getPages());
+        return "booksearch";
+        //return iBookService.listBook(pageNum,pageSize);
     }
 
 }

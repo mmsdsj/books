@@ -1,14 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>查询书籍</title>
+
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>查询书籍结果页面</title>
 </head>
 <body>
-<form action="findBooks.do" >
-    <input type="text" name="bsearch" placeholder="bisbn、书名、作者"/>
+<div th:include="header :: copy"></div>
 
-    <input type="submit"  value="搜索" />
-</form>
+<table class="table table-bordered">
+    <tr>
+        <th>isbn</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>库存数量</th>
+        <th>借出数量</th>
+        <th>分类</th>
+        <th>出版社</th>
+        <th>价格</th>
+        <th>介绍</th>
+        <!--<th>图片</th>-->
+
+        <!--<th>图片</th>-->
+    </tr>
+    <tr th:each="bookSearchList:${bookSearchList}">
+        <td th:text="${bookSearchList.bisbn}">bisbn</td>
+        <td th:text="${bookSearchList.bname}">bname</td>
+        <td th:text="${bookSearchList.bwriter}">bwriter</td>
+        <td th:text="${bookSearchList.bnumber}">bnumber</td>
+        <td th:text="${bookSearchList.boutnumber}">boutnumber</td>
+        <td th:text="${bookSearchList.bsort}">bsort</td>
+        <td th:text="${bookSearchList.bpub}">bpub</td>
+        <td th:text="${bookSearchList.bprice}">bprice</td>
+        <td th:text="${bookSearchList.bintro}">bintro</td>
+        <!--<td th:text="${listbook.bpic}">bpic</td>-->
+        <!--<td><img th:src="@{${bookSearchList.bpic}}"></td>-->
+        <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+
+    </tr>
+    <!--分页导航-->
+    <!--<tr>
+        <td><a th:href="@{/findBooksPages.do?pageNum=1}">首页</a></td>
+        <td>
+            <a th:if="${bookSearchList.isFirstPage}"
+               th:href="@{/findBooksPages.do(pageNum=1)}">上一页</a>
+
+            <a th:if="${!bookSearchList.isFirstPage}"
+               th:href="@{/findBooksPages.do(pageNum=${bookSearchList.pageNum-1})}">上一页</a>
+        </td>
+        <td>
+            <a th:if="${bookSearchList.isLastPage}"
+               th:href="@{/findBooksPages.do(pageNum=${totalPages})}">下一页</a>
+            <a th:if="${!bookSearchList.isLastPage}"
+               th:href="@{/findBooksPages.do(pageNum=${bookSearchList.pageNum+1})}">下一页</a>
+        </td>
+        <td><a th:href="@{/findBooksPages.do(pageNum=${totalPages})}">尾页</a></td>
+    </tr>-->
+</table>
 </body>
 </html>

@@ -62,9 +62,15 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findBookWriter(String bwriter){
         return bookMapper.findBookWriter(bwriter);
     }
-    public List<Book> findBooks(String bsearch){
+  /*  public List<Book> findBooks(String bsearch){
         return bookMapper.findBooks(bsearch);
+    }*/
+    public ServerResponse<PageInfo> findBooks(int pageNum, int pageSize,String bsearch){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Book> books = bookMapper.findBooks(bsearch);
+        //用PageInfo对结果进行包装
+        PageInfo<Book> pageInfo = new PageInfo<>(books);
+        return ServerResponse.createBySuccess("success",pageInfo);
     }
-
 
 }
