@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>读者查询页面</title>
+</head>
+<body>
+<div th:include="header :: copy"></div>
+<button id="modal-908961" href="#modal-container-908961" role="button" class="btn btn-default" data-toggle="modal">读者注册</button>
+<div class="modal fade" id="modal-container-908961" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    图书增加页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p><form action="/register.do" method="get">
+                    <div class="col-xs-4">
+                <p>账号<input class="form-control" type="text" name="rname"></p>
+                <p>密码<input class="form-control" type="password" name="rpwd"></p>
+                <p>年龄<input class="form-control" type="text" name="rage"></p>
+                <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
+                    <input type="radio"  name="rsex" value="female">女</p>
+
+                <p><button class="btn btn-default">点击注册</button></p>
+            </div>
+            </form>
+                </p>
+            </div>
+
+        <div class="modal-footer">
+        </div>
+</div>
+    </div>
+</div>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>rid</th>
+        <th>读者账号</th>
+        <th>读者密码</th>
+        <th>读者年龄</th>
+        <th>读者性别</th>
+
+
+    </tr>
+    <tr th:each="readerList:${readerList}">
+        <td th:text="${readerList.rid}">rid</td>
+        <td th:text="${readerList.rname}">rname</td>
+        <td th:text="${readerList.rpwd}">rpwd</td>
+        <td th:text="${readerList.rage}">rage</td>
+        <td th:text="${readerList.rsex}">rsex</td>
+        <td><a th:href="@{deleteReader.do(rname=${readerList.rname})}">删除</a></td>
+
+
+
+    </tr>
+<!--    <tr>    <div th:if="${readerList} lt ''">
+
+<td th:text="${message}"></td>
+    </div>
+    </tr>-->
+</table>
+
+</body>
+</html>

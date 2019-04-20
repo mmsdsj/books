@@ -1,5 +1,6 @@
 package com.lj.service;
 
+import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Reader;
 
@@ -18,4 +19,6 @@ public interface IReaderService {
     String deleteReader(String rname);
 
     List<Reader> findReader(String rname);
+
+    ServerResponse<PageInfo> listReader(int pageNum, int pageSize,String rname);
 }

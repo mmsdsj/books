@@ -38,6 +38,8 @@
                             <a href="/listBook.do"><button class="btn btn-default">退出登录</button></a>
                         </li>
                     </ul></div></div>
+
+
             <div class="tab-content col-md-8 column">
                 <div class="tab-pane active" id="panel-1">
                     <!--增加图书信息模态框-->
@@ -186,12 +188,12 @@
                     </p>
                 </div>
                 <div class="tab-pane" id="panel-4">
-
                         <form action="/record.do" method="get">
-                    图书isbn<input name="bisbn"><p></p>
-                   <p> 读者id<input name="rname"></p>
-
-                    <button type="submit" value="办理借阅">办理借阅</button>
+                            <div class="col-xs-4">
+                                <p>图书isbn<input class="form-control" name="bisbn"></p>
+                                <p> 读者id<input class="form-control" name="rname"></p>
+                                <button class="btn btn-default" type="submit" value="办理借阅">办理借阅</button>
+                            </div>
                 </form>
 
                 </div>
@@ -202,9 +204,12 @@
                 </div>
                 <div class="tab-pane" id="panel-6">
                     <p>
-                        <form action="/fineReader.do" method="get">
-                    <input class="form-control" name="rname">
+                        <form action="/fineReader.do" method="post">
+                    <div class="col-xs-4">
+
+                    <input class="form-control" name="rname" placeholder="根据读者账号查询">
                     <button class="btn btn-default" type="submit">查询</button>
+                    </div>
                 </form>
                     </p>
                 </div>

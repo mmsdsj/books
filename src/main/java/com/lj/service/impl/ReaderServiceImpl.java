@@ -1,5 +1,7 @@
 package com.lj.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.dao.ReaderMapper;
 import com.lj.pojo.Reader;
@@ -59,5 +61,13 @@ public class ReaderServiceImpl implements IReaderService {
 
     public List<Reader> findReader(String rname){
         return readerMapper.findReader(rname);
+    }
+
+    public ServerResponse<PageInfo> listReader(int pageNum, int pageSize,String rname){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Reader> readers = readerMapper.readerList(rname);
+        //用PageInfo对结果进行包装
+        PageInfo<Reader> pageInfo = new PageInfo<>(readers);
+        return ServerResponse.createBySuccess("success",pageInfo);
     }
 }

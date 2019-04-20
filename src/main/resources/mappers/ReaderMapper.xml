@@ -132,4 +132,10 @@
         from reader
         where rname=#{rName}
     </select>
+    <select id="readerList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from reader
+        where rname=#{rname}
+    </select>
 </mapper>

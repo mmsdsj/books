@@ -64,6 +64,7 @@ public class ReaderController {
             /*session.getSession().setAttribute("username",rName);*/
             ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
+
             //读者借阅记录
             iRecordService.penalty();//罚金
             ServerResponse<PageInfo> response1 = iRecordService.reader_record(1,15,reader.getData().getRname());
@@ -103,13 +104,15 @@ public class ReaderController {
         return "reader";
     }
 
-
+    //更改读者信息
     @RequestMapping(value = "updateReader.do",method = RequestMethod.POST)
     @ResponseBody
     public String updateReader(com.lj.pojo.Reader reader) {
         return iReaderService.updateReader(reader);
     }
 
+
+    //更改读者密码
     @RequestMapping(value = "updateReaderPassword.do",method = RequestMethod.POST)
     @ResponseBody
     public String updateReader(String rname) {
@@ -117,12 +120,7 @@ public class ReaderController {
     }
 
 
-
-    @RequestMapping(value = "deleteReaderHtml.do",method = RequestMethod.GET)
-    public String deleteReaderHtml(){
-        return "deleteReader";
-    }
-
+    //删除读者
     @RequestMapping(value = "deleteReader.do",method = RequestMethod.GET)
     @ResponseBody
     public String deleteReader(String rname) {
@@ -130,17 +128,25 @@ public class ReaderController {
         return iReaderService.deleteReader(rname);
     }
 
-    @RequestMapping(value = "findReaderHtml.do",method = RequestMethod.GET)
-    public String findReaderHtml(){
-        return "findReader";
-    }
 
-    @RequestMapping(value = "fineReader.do",method = RequestMethod.GET)
-    @ResponseBody
+
+    //查询读者信息
+    @RequestMapping(value = "fineReader.do",method = RequestMethod.POST)
+    /*@ResponseBody
     public List<com.lj.pojo.Reader> findReader(String rname) {
 
         return iReaderService.findReader(rname);
+    }*/
+    public String getAllReader(Model model,String rname, HttpSession session){
+
+        ServerResponse<PageInfo> response1 = iReaderService.listReader(1,5,rname);
+        model.addAttribute("readerList", response1.getData().getList());
+
+
+
+        return "readerlist";
     }
+
 
     @RequestMapping(value = "get_reader_info.do",method = RequestMethod.GET)
     @ResponseBody
@@ -151,6 +157,24 @@ public class ReaderController {
         }
         return ServerResponse.createByErrorMessage("请登录");
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //修改后
     //读者登录
