@@ -20,5 +20,5 @@ public interface IReaderService {
 
     List<Reader> findReader(String rname);
 
-    ServerResponse<PageInfo> listReader(int pageNum, int pageSize,String rname);
+    List<Reader> listReader(String rname);
 }

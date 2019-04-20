@@ -137,10 +137,10 @@ public class ReaderController {
 
         return iReaderService.findReader(rname);
     }*/
-    public String getAllReader(Model model,String rname, HttpSession session){
+    public String getAllReader(Model model,String rname){
 
-        ServerResponse<PageInfo> response1 = iReaderService.listReader(1,5,rname);
-        model.addAttribute("readerList", response1.getData().getList());
+        List<Reader> response1 = iReaderService.listReader(rname);
+        model.addAttribute("readerList", response1);
 
 
 

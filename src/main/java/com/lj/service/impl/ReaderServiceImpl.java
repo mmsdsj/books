@@ -63,11 +63,11 @@ public class ReaderServiceImpl implements IReaderService {
         return readerMapper.findReader(rname);
     }
 
-    public ServerResponse<PageInfo> listReader(int pageNum, int pageSize,String rname){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Reader> readers = readerMapper.readerList(rname);
+    public List<Reader> listReader(String rname){
+        //PageHelper.startPage(pageNum,pageSize);
+        //List<Reader> readers = readerMapper.readerList(rname);
         //用PageInfo对结果进行包装
-        PageInfo<Reader> pageInfo = new PageInfo<>(readers);
-        return ServerResponse.createBySuccess("success",pageInfo);
+
+        return readerMapper.readerList(rname);
     }
 }
