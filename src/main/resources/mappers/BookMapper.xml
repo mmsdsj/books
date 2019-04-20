@@ -231,4 +231,9 @@
        where bisbn=#{bisbn} and bnumber>0
     </update>
 
+    <update id="updateBackNumber" parameterType="integer">
+       update book set bnumber=bnumber+1 , boutnumber = boutnumber - 1
+       where bisbn=#{bisbn}
+    </update>
+
 </mapper>

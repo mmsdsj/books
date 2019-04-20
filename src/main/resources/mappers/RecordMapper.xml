@@ -125,6 +125,9 @@
     set penalty = (DATEDIFF(now(),indate)*0.1)
     where (DATEDIFF(now(),indate)) > 1
   </update>
-
+  <delete id="back"  parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 
 </mapper>

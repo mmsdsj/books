@@ -26,4 +26,7 @@ public interface RecordMapper {
 
     int penalty();
 
+    int back(Integer id);
+
+
 }

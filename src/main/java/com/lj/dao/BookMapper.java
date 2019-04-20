@@ -35,4 +35,7 @@ public interface BookMapper {
 
     int updateBnumberAndBOutNumber(int bisbn);
 
+    int updateBackNumber(int bisbn);
+
+
 }

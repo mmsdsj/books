@@ -27,9 +27,21 @@ public class RecordController {
         if (response.isSuccess()){
             model.addAttribute("isbn", record.getBisbn());
             model.addAttribute("rname", record.getRname());
-            model.addAttribute("indate",record.getIndate());
+           // model.addAttribute("indate",record.getIndate());
             return "record/borrow";
         }
         return "error";
     }
+    //管理员办理归还
+    @RequestMapping(value = "record_back.do", method = RequestMethod.GET)
+    public String back(int id,int bisbn) {
+        ServerResponse response = iRecordService.back(id,bisbn);
+        if (response.isSuccess()){
+            //model.addAttribute("isbn", record.getBisbn());
+           // model.addAttribute("rname", record.getRname());
+            return "record/back";
+        }
+        return "error";
+    }
+
 }

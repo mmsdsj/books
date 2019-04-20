@@ -42,10 +42,25 @@ public class RecordServiceImpl implements IRecordService {
         List<Record> records = recordMapper.reader_record(rName);
         PageInfo<Record> pageInfo = new PageInfo<>(records);
         return ServerResponse.createBySuccess("success",pageInfo);
-
-
-
     }
+
+//办理归还
+        public ServerResponse back(int id,int bisbn){
+           // int result = recordMapper.back(record);
+            //if(result > 0){
+                int updateResult = bookMapper.updateBackNumber(bisbn);
+                if(updateResult > 0) {
+
+                    int result = recordMapper.back(id);
+                        if(result > 0){
+                            return ServerResponse.createBySuccessMessage("还书成功");
+                        }
+                        return ServerResponse.createByErrorMessage("借书失败");
+                }
+            return ServerResponse.createByErrorMessage("借书失败");
+        }
+
+
 
 
 

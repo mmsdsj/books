@@ -11,4 +11,5 @@ public interface IRecordService {
     /*ServerResponse<Record> reader_record(String rname);*/
     ServerResponse<PageInfo> reader_record(int pageNum, int pageSize, String rname);
     Integer penalty();
+    ServerResponse back(int id,int bisbn);
 }

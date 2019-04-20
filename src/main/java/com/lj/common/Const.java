@@ -10,7 +10,4 @@ public class Const {
         String CURRENT_MANAGER = "CURRENT_MANAGER";
     }
 
-    public interface Book {
-        String CURRENT_BOOK = "CURRENT_BOOK";
-    }
 }
