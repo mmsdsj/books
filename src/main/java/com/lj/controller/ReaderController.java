@@ -110,6 +110,14 @@ public class ReaderController {
         return iReaderService.updateReader(reader);
     }
 
+    @RequestMapping(value = "updateReaderPassword.do",method = RequestMethod.POST)
+    @ResponseBody
+    public String updateReader(String rname) {
+        return iReaderService.updateReaderPassword(rname);
+    }
+
+
+
     @RequestMapping(value = "deleteReaderHtml.do",method = RequestMethod.GET)
     public String deleteReaderHtml(){
         return "deleteReader";

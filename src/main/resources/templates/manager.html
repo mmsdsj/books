@@ -23,7 +23,7 @@
                             <a href="#panel-2" data-toggle="tab"><button class="btn btn-default" type="submit">图书信息修改</button></a>
                         </li>
                         <li>
-                            <a href="#panel-3" data-toggle="tab"><button class="btn btn-default" type="submit">读者信息修改</button></a>
+                            <a href="#panel-3" data-toggle="tab"><button class="btn btn-default" type="submit">读者密码修改</button></a>
                         </li>
                         <li>
                             <a href="#panel-4" data-toggle="tab"><button class="btn btn-default" type="submit">办理借阅</button></a>
@@ -41,7 +41,7 @@
             <div class="tab-content col-md-8 column">
                 <div class="tab-pane active" id="panel-1">
                     <!--增加图书信息模态框-->
-                    <div><td>
+                    <div>
                         <button id="modal-908961" href="#modal-container-908961" role="button" class="btn btn-default" data-toggle="modal">新增</button>
                         <div class="modal fade" id="modal-container-908961" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -61,7 +61,7 @@
                                         <p>书名<input class="form-control" type="text" name="bname"></p>
                                         <p>作者<input class="form-control" type="text" name="bwriter"></p>
                                         <p>数量<input class="form-control" type="text" name="bnumber"></p>
-                                        <p>数量<input class="form-control" type="text" name="boutnumber"></p>
+                                        <p>借出数量<input class="form-control" type="text" name="boutnumber" value="0"></p>
 
                                         <p>类别<input class="form-control" type="text" name="bsort"></p>
                                         <p>出版社<input class="form-control" type="text" name="bpub"></p>
@@ -74,11 +74,10 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
                                 </div>
                             </div>
                         </div>
-                    </div></td>
+                    </div>
                 </div>
 
 
@@ -162,6 +161,8 @@
                     <p>书名<input class="form-control" type="text" name="bname"></p>
                     <p>作者<input class="form-control" type="text" name="bwriter"></p>
                     <p>数量<input class="form-control" type="text" name="bnumber"></p>
+                    <p>借出数量<input class="form-control" type="text" name="boutnumber"></p>
+
                     <p>类别<input class="form-control" type="text" name="bsort"></p>
                     <p>出版社<input class="form-control" type="text" name="bpub"></p>
                     <p>价钱<input class="form-control" type="text" name="bprice"></p>
@@ -174,14 +175,12 @@
                 </div>
                 <div class="tab-pane" id="panel-3">
                     <p>
-                        <form action="/updateReader.do" method="post">
+                        <form action="/updateReaderPassword.do" method="post">
                             <div class="col-xs-4">
-                    <p>账号<input class="form-control" type="text" name="rname"></p>
+                    <p>账号<input class="form-control" type="text" name="rname" placeholder="根据读者账号修改密码"></p>
                     <p>密码<input class="form-control" type="text" name="rpwd"></p>
-                    <p>年龄<input class="form-control" type="text" name="rage"></p>
-                    <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
-                        <input type="radio"  name="rsex" value="female">女</p>
-                    <button class="btn btn-default" type="submit">更改读者信息</button>
+
+                    <button class="btn btn-default" type="submit">更改读者密码</button>
                 </div>
                 </form>
                     </p>

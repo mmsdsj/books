@@ -110,6 +110,12 @@
         rsex = #{rsex,jdbcType=CHAR}
         where rname = #{rname}
     </update>
+    <update id="updateReaderPassword" parameterType="String">
+        update reader
+        set rname = rname,
+        rpwd = #{rpwd,jdbcType=VARCHAR}
+        where rname = #{rname}
+    </update>
     <delete id="deleteReader" parameterType="string">
         delete from reader
         where rname = #{rname}

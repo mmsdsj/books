@@ -40,6 +40,15 @@ public class ReaderServiceImpl implements IReaderService {
 
     }
 
+    public String updateReaderPassword(String  rname){
+        int result = readerMapper.updateReaderPassword(rname);
+        if(result > 0){
+            return "读者密码修改成功！";
+        }
+        return "读者密码修改失败！";
+
+    }
+
     public String deleteReader(String rname){
         int result = readerMapper.deleteReader(rname);
         if(result > 0){

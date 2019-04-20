@@ -13,6 +13,8 @@ public interface IReaderService {
 
     String updateReader(Reader reader);
 
+    String updateReaderPassword(String  rname);
+
     String deleteReader(String rname);
 
     List<Reader> findReader(String rname);

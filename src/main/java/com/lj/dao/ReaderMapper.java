@@ -24,6 +24,8 @@ public interface ReaderMapper {
 
     int updateReader(Reader reader);
 
+    int updateReaderPassword(String rname);
+
     int deleteReader(String rname);
 
     List<Reader> findReader(String rname);
