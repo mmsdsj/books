@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>读者借阅记录</title>
+</head>
+<body>
+<div th:include="header :: copy"></div>
+<div class="tab-content col-md-8 column">
+
+<table class="table table-bordered">
+    <tr>
+        <th>id</th>
+        <th>isbn</th>
+        <th>读者</th>
+        <th>借阅日期</th>
+        <th>归还日期</th>
+        <th>罚金</th>
+        <th>删除</th>
+    </tr>
+    <tr th:each="recordList:${recordList.list}" >
+        <td th:text="${recordList.id}">bisbn</td>
+        <td th:text="${recordList.bisbn}">bisbn</td>
+        <td th:text="${recordList.rname}">rname</td>
+        <td th:text="${#dates.format(recordList.outdate,'yyyy-MM-dd')}">indate</td>
+        <td th:text="${#dates.format(recordList.indate,'yyyy-MM-dd')}">indate</td>
+        <td th:text="${recordList.penalty}" bgcolor="#a52a2a">boutnumber</td>
+        <td><a th:href="@{record_back.do(id=${recordList.id},bisbn=${recordList.bisbn})}">删除</a></td>
+    </tr>
+
+</table>
+</div>
+</body>
+</html>

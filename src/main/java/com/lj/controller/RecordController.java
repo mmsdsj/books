@@ -1,8 +1,10 @@
 package com.lj.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Record;
 import com.lj.service.IRecordService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,4 +46,16 @@ public class RecordController {
         return "error";
     }
 
+    //查询读者借阅记录
+    @RequestMapping(value = "fineReaderRecord.do", method = RequestMethod.POST)
+    public String record_back(String rName, Model model){
+    if(rName!=null){
+
+        iRecordService.penalty();//罚金
+    ServerResponse<PageInfo> response1 = iRecordService.reader_record(1,15,rName);
+    model.addAttribute("recordList", response1.getData());
+    return "record/reader_record";
+    }
+    return "error";
+    }
 }

@@ -113,9 +113,9 @@
 
 
                                 <td>
-
                                     <a th:href="@{delete.do(bIsbn=${bookList.bisbn})}">删除</a>
                                 </td>
+
                                 <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                 <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
@@ -197,9 +197,15 @@
                 </form>
 
                 </div>
-                <div class="tab-pane" id="panel-5">
+                <div class="tab-pane" id="panel-5"><!--查询读者借阅记录-->
                     <p>
-                        Howdy, I'm in Section 5.
+                    <form action="/fineReaderRecord.do" method="post">
+                        <div class="col-xs-4">
+
+                            <input class="form-control" name="rName" placeholder="根据读者账号查看是否有罚金">
+                            <button class="btn btn-default" type="submit">查询</button>
+                        </div>
+                    </form>
                     </p>
                 </div>
                 <div class="tab-pane" id="panel-6">
