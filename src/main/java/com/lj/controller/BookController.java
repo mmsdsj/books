@@ -7,6 +7,7 @@ import com.lj.pojo.Book;
 import com.lj.pojo.Manager;
 import com.lj.pojo.Reader;
 import com.lj.service.IBookService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import java.util.List;
 
 
 @Controller
+@Slf4j
 public class BookController {
     @Autowired
     private IBookService iBookService;
@@ -55,9 +57,9 @@ public class BookController {
             }
             String savePath = "/image/" + newFileName;
             book.setBpic(savePath);
+            log.error("savePath is :{}",savePath);
 
         }
-
         return iBookService.addBooks(book);
     }
 
