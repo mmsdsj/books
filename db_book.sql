@@ -14,7 +14,7 @@ Date: 2018-11-29 15:52:08
 */
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
-
+drop database db_book;
 create Database db_book CHARACTER SET utf8 COLLATE utf8_general_ci;
 use db_book;
 

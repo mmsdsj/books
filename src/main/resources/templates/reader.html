@@ -168,6 +168,7 @@
                             <td><a th:href="@{/reader_record.do(pageNum1=${totalPages2})}">尾页</a></td>
                             </tr>-->
                             </table>
+                            <p th:if="${recordList.list.total == 0}">空的</p>
                             </p>
                         </div>
                         <div class="tab-pane" id="panel-4">

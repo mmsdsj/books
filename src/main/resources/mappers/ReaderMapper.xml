@@ -98,7 +98,7 @@
         from reader
         where rname=#{rName} and rpwd=#{rPwd}
     </select>
-    <insert id="register" parameterType="map">
+    <insert id="register" parameterType="com.lj.pojo.Reader">
         insert into reader( rid,rname, rpwd, rage, rsex)
         value (null ,#{rName},#{rPwd},#{rAge},#{rSex})
     </insert>
