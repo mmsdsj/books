@@ -42,6 +42,12 @@ public class BookController {
     @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse  addBooks(Book book, MultipartFile file){
+        if (book.getBisbn() == null || book.getBname()==null || book.getBwriter()==null
+                || book.getBnumber()==null || book.getBoutnumber()==null || book.getBsort()==null
+                || book.getBpub()==null || book.getBprice()==null || book.getBintro()==null) {
+            return ServerResponse.createByErrorMessage("新增失败,请检查图书信息是否都填写了");
+
+        }
         if (file != null) {
             String newFileName = file.getOriginalFilename();
             String path = "src/main/resources/static/image";
@@ -67,7 +73,15 @@ public class BookController {
 
     @RequestMapping(value = "updateBook.do",method = RequestMethod.POST)
     @ResponseBody
-    public String updateBook(Book book){return  iBookService.updateBook(book);}
+    public ServerResponse updateBook(Book book){
+        if (book.getBisbn() == null || book.getBname()==null || book.getBwriter()==null
+                || book.getBnumber()==null || book.getBoutnumber()==null || book.getBsort()==null
+                || book.getBpub()==null || book.getBprice()==null || book.getBintro()==null) {
+            return ServerResponse.createByErrorMessage("新增失败,请检查图书信息是否都填写了");
+
+        }
+
+        return  iBookService.updateBook(book);}
 
     @RequestMapping(value = "deleteHtml.do",method = RequestMethod.GET)
     public String deleteHtml(){return "delete";}
@@ -175,7 +189,10 @@ public class BookController {
     @RequestMapping(value = "/findBooks.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
     public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model,String bsearch,HttpSession session){
-
+        if (bsearch.length() < 6) {
+            model.addAttribute("registerError","请输入搜索条件");
+            return "reader/register_error";
+        }
         ServerResponse<PageInfo> response = iBookService.findBooks(pageNum,pageSize,bsearch);
         model.addAttribute("bookSearchList", response.getData());
         model.addAttribute("bsearch",bsearch);

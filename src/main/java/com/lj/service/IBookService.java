@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IBookService {
     ServerResponse  addBooks(Book book);
-    String updateBook(Book book);
+    ServerResponse updateBook(Book book);
     String delete(Integer bIsbn);
     ServerResponse<PageInfo> listBook(int pageNum, int pageSize);
 

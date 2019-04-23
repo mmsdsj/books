@@ -235,5 +235,10 @@
        update book set bnumber=bnumber+1 , boutnumber = boutnumber - 1
        where bisbn=#{bisbn}
     </update>
-
+<select id="checkBisbn" resultType="com.lj.pojo.Book">
+    select
+    <include refid="Base_Column_List"/>
+    from book
+    where bisbn=#{bisbn}
+</select>
 </mapper>

@@ -63,6 +63,10 @@ public class ReaderController {
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
     public String login(String rName, String rPwd, HttpSession session, Model model) {//ServerResponse<Reader>
+        if (rName == null || rPwd.isEmpty()) {
+            model.addAttribute("registerError","用户名或密码不能为空");
+            return "reader/register_error";
+        }
 
         ServerResponse<com.lj.pojo.Reader> reader = iReaderService.login(rName, rPwd);
         if(reader.isSuccess()){
@@ -88,7 +92,10 @@ public class ReaderController {
 
             return "reader";
         }
-        return "error";
+        model.addAttribute("registerError","密码错误");
+
+        return "reader/register_error";
+
     }
 
     //此为读者页面的图书分页

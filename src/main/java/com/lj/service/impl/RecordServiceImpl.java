@@ -4,7 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.dao.BookMapper;
+import com.lj.dao.ReaderMapper;
 import com.lj.dao.RecordMapper;
+import com.lj.pojo.Book;
+import com.lj.pojo.Reader;
 import com.lj.pojo.Record;
 import com.lj.service.IRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,19 @@ public class RecordServiceImpl implements IRecordService {
 
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private ReaderMapper readerMapper;
     //办理借阅
     public ServerResponse borrow(Record record){
+        Reader result1 = readerMapper.checkName(record.getRname());
+        if(result1 ==null){
+            return ServerResponse.createByErrorMessage("借书失败,读者账号不存在");
+        }
+        Book result2 = bookMapper.checkBisbn(record.getBisbn());
+        if(result2 ==null){
+            return ServerResponse.createByErrorMessage("借书失败,图书isbn不存在");
+        }
         int result = recordMapper.borrow(record);
         if(result > 0){
             int updateResult = bookMapper.updateBnumberAndBOutNumber(record.getBisbn());

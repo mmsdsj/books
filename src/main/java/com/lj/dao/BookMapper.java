@@ -1,6 +1,7 @@
 package com.lj.dao;
 
 import com.lj.pojo.Book;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -36,6 +37,8 @@ public interface BookMapper {
     int updateBnumberAndBOutNumber(int bisbn);
 
     int updateBackNumber(int bisbn);
+
+    Book checkBisbn(@Param("bisbn")int bisbn);
 
 
 }

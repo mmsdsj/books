@@ -18,7 +18,7 @@ public class ReaderServiceImpl implements IReaderService {
     public ServerResponse register(Reader reader) {
         Reader result1 = readerMapper.checkName(reader.getRname());
         if (result1 !=null){
-            return ServerResponse.createByErrorMessage("改用户名已经注册！");
+            return ServerResponse.createByErrorMessage("该用户名已经注册！");
         }
         int result = readerMapper.register(reader.getRname(),reader.getRpwd(),reader.getRage(),reader.getRsex());
         if (result > 0) {

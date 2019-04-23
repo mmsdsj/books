@@ -18,6 +18,10 @@ public class BookServiceImpl implements IBookService {
     private BookMapper bookMapper;
 
     public ServerResponse  addBooks(Book books) {
+        Book result1 = bookMapper.checkBisbn(books.getBisbn());
+        if (result1 !=null) {
+            return ServerResponse.createByErrorMessage("新增失败,该isbn已经存在！");
+        }
         int result = bookMapper.insert(books);
         if (result > 0) {
             return ServerResponse.createBySuccessMessage("新增成功");
@@ -26,12 +30,13 @@ public class BookServiceImpl implements IBookService {
 
     }
 
-    public String updateBook(Book books){
+    public ServerResponse updateBook(Book books){
         int result = bookMapper.updateBook(books);
         if(result > 0){
-            return "success";
+            return ServerResponse.createBySuccessMessage("新增成功");
+
         }else {
-            return "fail";
+            return ServerResponse.createByErrorMessage("新增失败");
         }
 
     }
