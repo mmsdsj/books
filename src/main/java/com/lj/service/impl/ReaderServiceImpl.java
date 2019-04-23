@@ -15,12 +15,12 @@ public class ReaderServiceImpl implements IReaderService {
     @Autowired
     private ReaderMapper readerMapper;
 
-    public String register(Reader reader) {
+    public ServerResponse register(Reader reader) {
         int result = readerMapper.register(reader.getRname(),reader.getRpwd(),reader.getRage(),reader.getRsex());
         if (result > 0) {
-            return "success";
+            return ServerResponse.createBySuccessMessage("success");
         }
-        return "fail";
+        return ServerResponse.createByErrorMessage("fail");
     }
 
     public ServerResponse<Reader> login(String rName, String rPwd) {

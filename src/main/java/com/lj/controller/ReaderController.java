@@ -47,7 +47,11 @@ public class ReaderController {
             model.addAttribute("registerError","密码不能少于6位");
             return "registerError";
         }
-        return iReaderService.register(reader);
+        ServerResponse response = iReaderService.register(reader);
+        if (response.isSuccess()) {
+            return "listbook";
+        }
+        return "error";
     }
 
     //读者登录
