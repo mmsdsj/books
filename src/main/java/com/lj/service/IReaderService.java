@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IReaderService {
 
-    ServerResponse register(Reader reader);
+    String register(Reader reader);
 
     ServerResponse<Reader> login(String rName, String rPwd);
 

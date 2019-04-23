@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+    <script type="text/javascript">
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+</head>
+<body>
+<p th:text="${registerError}">errorMessage</p>
+<div class="main-text-a"><a onclick="goBack()"><h3>< 返回</h3></a></div>
+</body>
+</html>

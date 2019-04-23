@@ -38,13 +38,14 @@ public class ReaderController {
 
 
     @RequestMapping(value = "register.do", method = RequestMethod.GET)
-    @ResponseBody
-    public ServerResponse register(Reader reader) {
+    public String register(Reader reader,Model model) {
         if (reader.getRname() == null || reader.getRname().isEmpty()) {
-            return ServerResponse.createByErrorMessage("用户名或密码不能为空");
+            model.addAttribute("registerError","用户名或密码不能为空");
+            return "registerError";
         }
         if (reader.getRpwd().length() < 6) {
-            return ServerResponse.createByErrorMessage("密码不能少于6位");
+            model.addAttribute("registerError","密码不能少于6位");
+            return "registerError";
         }
         return iReaderService.register(reader);
     }
