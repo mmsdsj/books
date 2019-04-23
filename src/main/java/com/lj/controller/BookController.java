@@ -178,7 +178,7 @@ public class BookController {
 
         ServerResponse<PageInfo> response = iBookService.findBooks(pageNum,pageSize,bsearch);
         model.addAttribute("bookSearchList", response.getData());
-
+        model.addAttribute("bsearch",bsearch);
         //获取分页数据
         model.addAttribute("ServerResponse",response);
         model.addAttribute("pageNum",pageNum);

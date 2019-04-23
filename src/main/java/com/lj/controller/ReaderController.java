@@ -47,6 +47,10 @@ public class ReaderController {
             model.addAttribute("registerError","密码不能少于6位");
             return "reader/register_error";
         }
+        if (reader.getRage() < 1) {
+            model.addAttribute("registerError","年龄不能小于1岁");
+            return "reader/register_error";
+        }
         ServerResponse response = iReaderService.register(reader);
         if (response.isSuccess()) {
             return "reader/register_success";

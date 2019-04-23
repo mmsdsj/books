@@ -22,7 +22,7 @@
         <th>出版社</th>
         <th>价格</th>
         <th>介绍</th>
-        <!--<th>图片</th>-->
+        <th>图片</th>
 
         <!--<th>图片</th>-->
     </tr>
@@ -36,29 +36,76 @@
         <td th:text="${bookSearchList.bpub}">bpub</td>
         <td th:text="${bookSearchList.bprice}">bprice</td>
         <td th:text="${bookSearchList.bintro}">bintro</td>
+        <td><img th:src="@{${bookSearchList.bpic}}"></td>
+
         <!--<td th:text="${listbook.bpic}">bpic</td>-->
         <!--<td><img th:src="@{${bookSearchList.bpic}}"></td>-->
         <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
 
     </tr>
-    分页导航
-    <tr>
-        <td><a th:href="@{/findBooks.do?pageNum=1}">首页</a></td>
-        <td>
+
+
+</table>
+<!--分页导航-->
+<div class="col-md-12 column">
+    <div class="col-md-4 column"></div>
+
+    <ul class="pagination">
+    <li><a th:href="@{/findBooks.do(pageNum=1,bsearch=${bsearch})}"><<</a></li>
+    <li>
+        <a th:if="${bookSearchList.isFirstPage}"
+           th:href="@{/findBooks.do(pageNum=1,bsearch=${bsearch})}"> < </a>
+
+        <a th:if="${!bookSearchList.isFirstPage}"
+           th:href="@{/findBooks.do(pageNum=${bookSearchList.pageNum-1},bsearch=${bsearch})}"> < </a>
+    </li>
+    <li>
+        <a><u th:if="${pageNum}==Null" th:text="1"></u><u th:if="${pageNum}!=Null" th:text="${pageNum}"></u></a>
+    </li>
+    <li>
+        <a th:if="${bookSearchList.isLastPage}"
+           th:href="@{/findBooks.do(pageNum=${totalPages},bsearch=${bsearch})}"> > </a>
+        <a th:if="${!bookSearchList.isLastPage}"
+           th:href="@{/findBooks.do(pageNum=${bookSearchList.pageNum+1},bsearch=${bsearch})}"> > </a>
+    </li>
+    <li><a th:href="@{/findBooks.do(pageNum=${totalPages},bsearch=${bsearch})}">>></a></li>
+    <li>
+        <a><u th:text="'共'+${totalPages}+'页'"></u></a>
+    </li>
+</ul>
+<!--<div class="col-md-12 column">
+    <div class="col-md-5 column"></div>
+
+    <ul class="pagination">
+        <li>
+            <a th:href="@{/findBooks.do(pageNum=1,bsearch=${bsearch})}"><<</a>
+        </li>
+        <li>
             <a th:if="${bookSearchList.isFirstPage}"
-               th:href="@{/findBooks.do(pageNum=1)}">上一页</a>
+               th:href="@{/findBooks.do(pageNum=1,bsearch=${bsearch})}"> < </a>
 
             <a th:if="${!bookSearchList.isFirstPage}"
-               th:href="@{/findBooks.do(pageNum=${bookSearchList.pageNum-1})}">上一页</a>
-        </td>
-        <td>
+               th:href="@{/findBooks.do(pageNum=${bookSearchList.pageNum-1},bsearch=${bsearch})}"> < </a>
+        </li>
+
+        <li>
+            <a><u th:if="${pageNum}==Null" th:text="1"></u><u th:if="${pageNum}!=Null" th:text="${pageNum}"></u></a>
+        </li>
+
+
+        <li>
             <a th:if="${bookSearchList.isLastPage}"
-               th:href="@{/findBooks.do(pageNum=${totalPages})}">下一页</a>
+               th:href="@{/findBooks.do(pageNum=${totalPages},bsearch=${bsearch})}">> </a>
             <a th:if="${!bookSearchList.isLastPage}"
-               th:href="@{/findBooks.do(pageNum=${bookSearchList.pageNum+1})}">下一页</a>
-        </td>
-        <td><a th:href="@{/findBooks.do(pageNum=${totalPages})}">尾页</a></td>
-    </tr>
-</table>
+               th:href="@{/findBooks.do(pageNum=${bookList.pageNum+1},bsearch=${bsearch})}"> > </a>
+        </li>
+        <li>
+            <a th:href="@{/findBooks.do(pageNum=${totalPages},bsearch=${bsearch})}">>></a>
+        </li>
+        <li>
+            <a><u th:text="'共'+${totalPages}+'页'"></u></a>
+        </li>
+    </ul></div>-->
+</div>
 </body>
 </html>

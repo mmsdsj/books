@@ -53,7 +53,7 @@
                                             <th>出版社</th>
                                             <th>价格</th>
                                             <th>介绍</th>
-                                            <!--<th>图片</th>-->
+                                            <th>图片</th>
 
                                             <!--<th>图片</th>-->
                                         </tr>
@@ -67,7 +67,7 @@
                                             <td th:text="${bookList.bpub}">bpub</td>
                                             <td th:text="${bookList.bprice}">bprice</td>
                                             <td th:text="${bookList.bintro}">bintro</td>
-                                            <!--<td th:text="${bookList.bpic}">bpic</td>-->
+                                            <td><img th:src="@{${bookList.bpic}}"></td>
 
                                             <!--<td>< img th:src="@{${bookList.detail}}" height="100" width="100" alt="image"/></td>-->
 

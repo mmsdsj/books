@@ -94,8 +94,8 @@
                                 <th>出版社</th>
                                 <th>价格</th>
                                 <th>介绍</th>
+                                <th>图片</th>
                                 <th>删除</th>
-                                <!--<th>图片</th>-->
 
                                 <!--<th>图片</th>-->
                             </tr>
@@ -109,8 +109,7 @@
                                 <td th:text="${bookList.bpub}">bpub</td>
                                 <td th:text="${bookList.bprice}">bprice</td>
                                 <td th:text="${bookList.bintro}">bintro</td>
-                                <!--图书修改模态框-->
-
+                                <td><img th:src="@{${bookList.bpic}}"></td>
                                 <td>
                                     <button class="btn btn-default" th:href="@{delete.do(bIsbn=${bookList.bisbn})}"><a>删除</a></button>
                                 </td>
