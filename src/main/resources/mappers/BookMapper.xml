@@ -223,7 +223,7 @@
         select
         <include refid="Base_Column_List"/>
         from book
-        where bisbn=#{bsearch} or bname like "%"#{bsearch}"%" or bwriter like "%"#{bsearch}"%"
+        where bisbn=#{bsearch} or bname like CONCAT('%',#{bsearch},'%') or bwriter like CONCAT('%',#{bsearch},'%')
     </select>
 
     <update id="updateBnumberAndBOutNumber" parameterType="integer">
