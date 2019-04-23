@@ -129,5 +129,10 @@
     delete from record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
+  <select id="reader_recordMax" resultType="int">
+  select
+  count(*)
+  from  record
+  where rname like #{rname}
+  </select>
 </mapper>

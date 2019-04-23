@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.dao.BookMapper;
 import com.lj.dao.ReaderMapper;
+import com.lj.dao.RecordMapper;
 import com.lj.pojo.Book;
 import com.lj.pojo.Reader;
 import com.lj.pojo.Record;
@@ -27,6 +28,9 @@ public class RecordController {
     @Autowired
     private BookMapper bookMapper;
 
+    @Autowired
+    private RecordMapper recordMapper;
+
     @RequestMapping(value = "recordHtml.do", method = RequestMethod.GET)
     public String recordHtml() {
 
@@ -47,6 +51,11 @@ public class RecordController {
         Book result2 = bookMapper.checkBisbn(record.getBisbn());
         if(result2 ==null){
             model.addAttribute("registerError","图书isbn不存在！");
+            return "reader/register_error";
+        }
+        int result3 = recordMapper.reader_recordMax(record.getRname());
+        if(result3 >8){
+            model.addAttribute("registerError","超过借阅记录");
             return "reader/register_error";
         }
         ServerResponse response = iRecordService.borrow(record);

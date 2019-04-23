@@ -28,5 +28,7 @@ public interface RecordMapper {
 
     int back(Integer id);
 
+    int reader_recordMax(String rName);
+
 
 }
