@@ -25,7 +25,7 @@ import java.util.List;
 
 
 @Controller
-@Slf4j
+
 public class BookController {
     @Autowired
     private IBookService iBookService;
@@ -57,7 +57,6 @@ public class BookController {
             }
             String savePath = "/image/" + newFileName;
             book.setBpic(savePath);
-            log.error("savePath is :{}",savePath);
 
         }
         return iBookService.addBooks(book);

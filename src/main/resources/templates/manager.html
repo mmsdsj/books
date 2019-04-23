@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>
-                                            <form action="/book.do" method="post">
+                                            <form action="/book.do" method="post" enctype="multipart/form-data">
                                                 <div class="col-xs-4">
 
                                         <p>isbn<input class="form-control" type="text" name="bisbn"></p>
@@ -69,7 +69,7 @@
                                         <p>出版社<input class="form-control" type="text" name="bpub"></p>
                                         <p>价钱<input class="form-control" type="text" name="bprice"></p>
                                         <p>介绍<input class="form-control" type="text" name="bintro"></p>
-                                        <!--<p>图片<input type="file" name="bpic"></p>-->
+                                        <p>图片<input type="file" name="file"></p>
                                         <p><input class="btn btn-default" type="submit" value="增加图书信息"/></p>
                                     </div>
                                     </form>
@@ -111,48 +111,47 @@
                                 <td th:text="${bookList.bintro}">bintro</td>
                                 <!--图书修改模态框-->
 
-
                                 <td>
-                                    <a th:href="@{delete.do(bIsbn=${bookList.bisbn})}">删除</a>
+                                    <button class="btn btn-default" th:href="@{delete.do(bIsbn=${bookList.bisbn})}"><a>删除</a></button>
                                 </td>
-
-                                <!--<td th:text="${listbook.bpic}">bpic</td>-->
-
-                                <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
-
                             </tr>
-                           <!-- &lt;!&ndash;分页导航&ndash;&gt;
-                            <tr>
-                                <td><a th:href="@{/listBook_reader.do?pageNum=1}">首页</a></td>
-                                <td th:switch="${pageNum}">
-                                    <p th:case="1"> <a th:href="@{/listBook_reader.do?pageNum=1}">上一页</a></p>
-                                    <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum-1})}">上一页</a></p>
-                                </td>
-                                <td th:switch="${pageNum}">
-                                    <p th:case="${totalPages}"><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a></p>
-                                    <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum+1})}">下一页</a></p>
-                                </td>
-                                <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
-                            </tr>-->
-                            <!--分页导航-->
-                            <tr>
-                                <td><a th:href="@{/listBook_manager.do?pageNum=1}">首页</a></td>
-                                <td>
-                                    <a th:if="${bookList.isFirstPage}"
-                                       th:href="@{/listBook_manager.do(pageNum=1)}">上一页</a>
 
-                                    <a th:if="${!bookList.isFirstPage}"
-                                       th:href="@{/listBook_manager.do(pageNum=${bookList.pageNum-1})}">上一页</a>
-                                </td>
-                                <td>
-                                    <a th:if="${bookList.isLastPage}"
-                                       th:href="@{/listBook_manager.do(pageNum=${totalPages})}">下一页</a>
-                                    <a th:if="${!bookList.isLastPage}"
-                                       th:href="@{/listBook_manager.do(pageNum=${bookList.pageNum+1})}">下一页</a>
-                                </td>
-                                <td><a th:href="@{/listBook_manager.do(pageNum=${totalPages})}">尾页</a></td>
-                            </tr>
                         </table>
+                <!--分页导航-->
+                <div class="col-md-8 column">
+                    <div class="col-md-3 column"></div>
+
+                    <ul class="pagination">
+                        <li>
+                            <a th:href="@{/listBook_manager.do?pageNum=1}"><<</a>
+                        </li>
+                        <li th:switch="${pageNum}">
+                            <a th:case="1" th:href="@{/listBook_manager.do?pageNum=1}"> < </a>
+                            <a th:case="*" th:href="@{/listBook_manager.do(pageNum=${pageNum-1})}"> < </a>
+                        </li>
+                        <li th:switch="${pageNum}">
+                            <a th:case="1" th:href="@{/listBook_manager.do?pageNum=1}"> < </a>
+                            <a th:case="*" th:href="@{/listBook_manager.do(pageNum=${pageNum-1})}"><div th:text="${pageNum-1}"></div></a>
+                        </li>
+                        <li>
+                            <a><u th:text="${pageNum}"></u></a>
+                        </li>
+                        <li th:switch="${pageNum}">
+                            <a th:case="${totalPages}" th:href="@{/listBook_manager.do(pageNum=${totalPages})}"> > </a>
+                            <a th:case="*" th:href="@{/listBook_manager.do(pageNum=${pageNum+1})}"><div th:text="${pageNum+1}"></div></a>
+                        </li>
+
+                        <li th:switch="${pageNum}">
+                            <a th:case="${totalPages}" th:href="@{/listBook_manager.do(pageNum=${totalPages})}"> > </a>
+                            <a th:case="*" th:href="@{/listBook_manager.do(pageNum=${pageNum+1})}"> > </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/listBook_manager.do(pageNum=${totalPages})}">>></a>
+                        </li>
+                        <li>
+                            <a><u th:text="'共'+${totalPages}+'页'"></u></a>
+                        </li>
+                    </ul></div>
 
             </div>
                 <div class="tab-pane" id="panel-2">

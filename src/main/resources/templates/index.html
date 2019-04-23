@@ -69,7 +69,7 @@
 
                                     </tr>
                                     <!--分页导航-->
-                                    <tr>
+                                    <!--<tr>
                                         <td><a th:href="@{/listBook.do?pageNum=1}">首页</a></td>
                                         <td th:switch="${pageNum}">
                                             <p th:case="1"> <a th:href="@{/listBook.do?pageNum=1}">上一页</a></p>
@@ -80,9 +80,46 @@
                                             <p th:case="*"><a th:href="@{/listBook.do(pageNum=${pageNum+1})}">下一页</a></p>
                                         </td>
                                         <td><a th:href="@{/listBook.do(pageNum=${totalPages})}">尾页</a></td>
-                                    </tr>
-                                </table>
+                                    </tr>-->
 
+
+
+                                </table>
+                                <!--分页导航-->
+                                <div class="col-md-8 column">
+                                    <div class="col-md-3 column"></div>
+
+                                    <ul class="pagination">
+                                    <li>
+                                        <a th:href="@{/listBook.do?pageNum=1}"><<</a>
+                                    </li>
+                                        <li th:switch="${pageNum}">
+                                            <a th:case="1" th:href="@{/listBook.do?pageNum=1}"> < </a>
+                                            <a th:case="*" th:href="@{/listBook.do(pageNum=${pageNum-1})}"> < </a>
+                                        </li>
+                                    <li th:switch="${pageNum}">
+                                        <a th:case="1" th:href="@{/listBook.do?pageNum=1}"> < </a>
+                                        <a th:case="*" th:href="@{/listBook.do(pageNum=${pageNum-1})}"><div th:text="${pageNum-1}"></div></a>
+                                    </li>
+                                    <li>
+                                        <a><u th:text="${pageNum}"></u></a>
+                                    </li>
+                                    <li th:switch="${pageNum}">
+                                        <a th:case="${totalPages}" th:href="@{/listBook.do(pageNum=${totalPages})}"> > </a>
+                                        <a th:case="*" th:href="@{/listBook.do(pageNum=${pageNum+1})}"><div th:text="${pageNum+1}"></div></a>
+                                    </li>
+
+                                        <li th:switch="${pageNum}">
+                                            <a th:case="${totalPages}" th:href="@{/listBook.do(pageNum=${totalPages})}"> > </a>
+                                            <a th:case="*" th:href="@{/listBook.do(pageNum=${pageNum+1})}"> > </a>
+                                        </li>
+                                    <li>
+                                        <a th:href="@{/listBook.do(pageNum=${totalPages})}">>></a>
+                                    </li>
+                                        <li>
+                                            <a><u th:text="'共'+${totalPages}+'页'"></u></a>
+                                        </li>
+                                    </ul></div>
 
 
 

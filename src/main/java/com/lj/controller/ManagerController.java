@@ -45,6 +45,8 @@ public class ManagerController {
             ServerResponse<PageInfo> response = iBookService.listBook(1, 5);
             model.addAttribute("bookList", response.getData());
             model.addAttribute("totalPages",response.getData().getPages());
+            model.addAttribute("pageNum",1);
+
             /*model.addAttribute("mname", mname);*/
             return "manager";
         }

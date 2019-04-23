@@ -73,33 +73,69 @@
 
                                         </tr>
                                         <!--分页导航-->
-                                        <tr>
-                                            <td><a th:href="@{/listBook_reader.do?pageNum=1}">首页</a></td>
+                                        <!--<tr>
+                                            <td><a th:href="@{/listBook_reader.do?pageNum=1}"><<</a></td>
                                             <td>
                                                 <a th:if="${bookList.isFirstPage}"
-                                                   th:href="@{/listBook_reader.do(pageNum=1)}">上一页</a>
+                                                   th:href="@{/listBook_reader.do(pageNum=1)}"> < </a>
 
                                                 <a th:if="${!bookList.isFirstPage}"
-                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}">上一页</a>
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}"> < </a>
                                             </td>
                                             <td>
                                                 <a th:if="${bookList.isLastPage}"
-                                                   th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a>
-                                            <a th:if="${!bookList.isLastPage}"
-                                               th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}">下一页</a>
+                                                   th:href="@{/listBook_reader.do(pageNum=${totalPages})}">> </a>
+                                                <a th:if="${!bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}"> > </a>
                                             </td>
-                                            <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
-                                        </tr>
-                                        <!--<tr>
-                                            <td>
-                                        <a th:if="${!bookList.isFirstPage}"
-                                           th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}">上一页</a>
-                                        <a th:if="${!bookList.isLastPage}"
-                                           th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}">下一页</a>
-                                            </td>
+                                            <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">>></a></td>
                                         </tr>-->
                                     </table>
+                                    <!--分页导航-->
+                                    <div class="col-md-8 column">
+                                        <div class="col-md-3 column"></div>
 
+                                        <ul class="pagination">
+                                            <li>
+                                                <a th:href="@{/listBook_reader.do?pageNum=1}"><<</a>
+                                            </li>
+                                            <li>
+                                                <a th:if="${bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=1)}"> < </a>
+
+                                                <a th:if="${!bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}"> < </a>
+                                            </li>
+                                            <li>
+                                                <a th:if="${bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=1)}"> < </a>
+
+                                                <a th:if="${!bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}"><div th:text="${pageNum-1}"></div></a>
+                                            </li>
+                                            <li>
+                                                <a><u th:if="${pageNum}==Null" th:text="1"></u><u th:if="${pageNum}!=Null" th:text="${pageNum}"></u></a>
+                                            </li>
+                                            <li>
+                                                <a th:if="${bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${totalPages})}">> </a>
+                                                <a th:if="${!bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}"><div th:text="${pageNum+1}"></div></a>
+                                            </li>
+
+                                            <li>
+                                                <a th:if="${bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${totalPages})}">> </a>
+                                                <a th:if="${!bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}"> > </a>
+                                            </li>
+                                            <li>
+                                                <a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">>></a>
+                                            </li>
+                                            <li>
+                                                <a><u th:text="'共'+${totalPages}+'页'"></u></a>
+                                            </li>
+                                        </ul></div>
 
 
 

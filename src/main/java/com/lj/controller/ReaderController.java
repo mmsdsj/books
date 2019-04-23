@@ -72,7 +72,9 @@ public class ReaderController {
 
 
             //获取分页尾页数据
-            model.addAttribute("totalPages",response1.getData().getPages());
+            model.addAttribute("totalPages",response.getData().getPages());
+            model.addAttribute("pageNum",1);
+
             return "reader";
         }
         return "error";
