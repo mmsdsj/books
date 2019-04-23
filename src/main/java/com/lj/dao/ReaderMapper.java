@@ -34,5 +34,7 @@ public interface ReaderMapper {
 
     List<Reader> readerList(String rname);
 
+    Reader checkName(@Param("rName")String rName);
+
 
 }

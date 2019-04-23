@@ -174,10 +174,10 @@ public class BookController {
     //查询图书
     @RequestMapping(value = "/findBooks.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
-    public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "30") int pageSize, Model model,String bsearch,HttpSession session){
+    public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model,String bsearch,HttpSession session){
 
         ServerResponse<PageInfo> response = iBookService.findBooks(pageNum,pageSize,bsearch);
-        model.addAttribute("bookSearchList", response.getData().getList());
+        model.addAttribute("bookSearchList", response.getData());
 
         //获取分页数据
         model.addAttribute("ServerResponse",response);

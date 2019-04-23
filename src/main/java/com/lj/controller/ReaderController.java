@@ -51,7 +51,8 @@ public class ReaderController {
         if (response.isSuccess()) {
             return "reader/register_success";
         }
-        return "error";
+        model.addAttribute("registerError","账号已经被注册");
+        return "reader/register_error";
     }
 
     //读者登录
