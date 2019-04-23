@@ -1,7 +1,5 @@
 package com.lj.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.dao.ReaderMapper;
 import com.lj.pojo.Reader;
@@ -17,12 +15,12 @@ public class ReaderServiceImpl implements IReaderService {
     @Autowired
     private ReaderMapper readerMapper;
 
-    public String register(Reader reader) {
+    public ServerResponse register(Reader reader) {
         int result = readerMapper.register(reader.getRname(),reader.getRpwd(),reader.getRage(),reader.getRsex());
         if (result > 0) {
-            return "success";
+            return ServerResponse.createBySuccessMessage("success");
         }
-        return "fail";
+        return ServerResponse.createByErrorMessage("fail");
     }
 
     public ServerResponse<Reader> login(String rName, String rPwd) {

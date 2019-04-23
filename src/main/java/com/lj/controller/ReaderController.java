@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.lj.common.Const;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Reader;
-import com.lj.pojo.Record;
 import com.lj.service.IBookService;
 import com.lj.service.IReaderService;
 import com.lj.service.IRecordService;
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -43,8 +39,13 @@ public class ReaderController {
 
     @RequestMapping(value = "register.do", method = RequestMethod.GET)
     @ResponseBody
-    public String register(com.lj.pojo.Reader reader) {
-
+    public ServerResponse register(Reader reader) {
+        if (reader.getRname() == null || reader.getRname().isEmpty()) {
+            return ServerResponse.createByErrorMessage("用户名或密码不能为空");
+        }
+        if (reader.getRpwd().length() < 6) {
+            return ServerResponse.createByErrorMessage("密码不能少于6位");
+        }
         return iReaderService.register(reader);
     }
 
