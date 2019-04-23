@@ -41,15 +41,15 @@ public class ReaderController {
     public String register(Reader reader,Model model) {
         if (reader.getRname() == null || reader.getRname().isEmpty()) {
             model.addAttribute("registerError","用户名或密码不能为空");
-            return "registerError";
+            return "reader/register_error";
         }
         if (reader.getRpwd().length() < 6) {
             model.addAttribute("registerError","密码不能少于6位");
-            return "registerError";
+            return "reader/register_error";
         }
         ServerResponse response = iReaderService.register(reader);
         if (response.isSuccess()) {
-            return "listbook";
+            return "reader/register_success";
         }
         return "error";
     }
