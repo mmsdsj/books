@@ -133,6 +133,6 @@
   select
   count(*)
   from  record
-  where rname like #{rname}
+  where rname = #{rname}
   </select>
 </mapper>
