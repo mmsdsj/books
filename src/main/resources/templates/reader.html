@@ -180,31 +180,13 @@
                                 <tr th:each="recordList:${recordList.list}" >
                                     <td th:text="${recordList.bisbn}">bisbn</td>
                                     <td th:text="${recordList.rname}">rname</td>
-                                    <!--<td th:text="${recordList.outdate}">outdate</td>-->
-                                    <!--<td th:text="${recordList.indate}">indate</td>-->
                                     <td th:text="${#dates.format(recordList.outdate,'yyyy-MM-dd')}">indate</td>
                                     <td th:text="${#dates.format(recordList.indate,'yyyy-MM-dd')}">indate</td>
-                                    <!--<th:text="${#dates.format(user.birth, 'yyyy-MM-dd HH:mm')}"></p>-->
-
-                            <td th:text="${recordList.penalty}">boutnumber</td>
-                                    <!--<td th:text="${listbook.bpic}">bpic</td>-->
-
-                                    <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+                                    <td th:text="${recordList.penalty}">boutnumber</td>
                                 </tr>
-                                <!--<tr>
-                                    <td><a th:href="@{/reader_record.do?pageNum1=1}">首页</a></td>
-                                    <td th:switch="${pageNum1}">
-                            <p th:case="1"> <a th:href="@{/reader_record.do?pageNum1=1}">上一页</a></p>
-                            <p th:case="*"><a th:href="@{/reader_record.do(pageNum1=${pageNum1-1})}">上一页</a></p>
-                            </td>
-                            <td th:switch="${pageNum1}">
-                                <p th:case="${totalPages2}"><a th:href="@{/reader_record.do(pageNum1=${totalPages2})}">下一页</a></p>
-                                <p th:case="*"><a th:href="@{/reader_record.do(pageNum1=${pageNum1+1})}">下一页</a></p>
-                            </td>
-                            <td><a th:href="@{/reader_record.do(pageNum1=${totalPages2})}">尾页</a></td>
-                            </tr>-->
+
                             </table>
-                            <p th:if="${recordList.list.total == 0}">空的</p>
+                            <p th:if="${recordList.list.total == 0}">暂无借阅记录！</p>
                         </div>
                         <div class="tab-pane" id="panel-4">
                             <p>

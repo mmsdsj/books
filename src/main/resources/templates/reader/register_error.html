@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>注册失败</title>
+    <title>失败提示页面</title>
     <script type="text/javascript">
         function goBack() {
             window.history.go(-1);
@@ -11,6 +11,6 @@
 </head>
 <body>
 <p th:text="${registerError}">errorMessage</p>
-<div class="main-text-a"><a onclick="goBack()"><h3>< 返回</h3></a></div>
+<div class="main-text-a"><button onclick="goBack()"> 返回</button></div>
 </body>
 </html>

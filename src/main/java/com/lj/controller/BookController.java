@@ -191,7 +191,7 @@ public class BookController {
     @RequestMapping(value = "/findBooks.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
     public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model,String bsearch,HttpSession session){
-        if (bsearch.length() < 6) {
+        if (bsearch.length() == 0) {
             model.addAttribute("registerError","请输入搜索条件");
             return "reader/register_error";
         }

@@ -32,8 +32,9 @@
         <td><a th:href="@{record_lost.do(id=${recordList.id},bisbn=${recordList.bisbn})}">丢失</a></td>
 
     </tr>
-
 </table>
+    <p th:if="${recordList.list.total == 0}">暂无借阅记录！</p>
+
 </div>
 </body>
 </html>
