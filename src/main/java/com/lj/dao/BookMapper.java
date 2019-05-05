@@ -40,5 +40,7 @@ public interface BookMapper {
 
     Book checkBisbn(@Param("bisbn")int bisbn);
 
+    int updateBackNumberLost(int bisbn);
+
 
 }

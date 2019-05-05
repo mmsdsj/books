@@ -70,14 +70,27 @@ public class RecordController {
     }
     //管理员办理归还
     @RequestMapping(value = "record_back.do", method = RequestMethod.GET)
-    public String back(int id,int bisbn) {
+    public String back(int id,int bisbn,Model model) {
         ServerResponse response = iRecordService.back(id,bisbn);
         if (response.isSuccess()){
             //model.addAttribute("isbn", record.getBisbn());
            // model.addAttribute("rname", record.getRname());
             return "record/back";
         }
-        return "error";
+        model.addAttribute("registerError","还书失败！该书可能已办理归还！刷新试试吧");
+
+        return "reader/register_error";
+    }
+
+    //管理员办理丢失
+    @RequestMapping(value = "record_lost.do",method = RequestMethod.GET)
+    public String lost(int id,int bisbn,Model model){
+        ServerResponse response = iRecordService.lost(id,bisbn);
+        if (response.isSuccess()){
+            return "record/back";
+        }
+        model.addAttribute("registerError","还书失败！该书可能已办理归还！刷新试试吧");
+        return "reader/register_error";
     }
 
     //查询读者借阅记录

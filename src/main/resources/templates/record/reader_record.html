@@ -29,6 +29,8 @@
         <td th:text="${#dates.format(recordList.indate,'yyyy-MM-dd')}">indate</td>
         <td th:text="${recordList.penalty}" bgcolor="#a52a2a">boutnumber</td>
         <td><a th:href="@{record_back.do(id=${recordList.id},bisbn=${recordList.bisbn})}">删除</a></td>
+        <td><a th:href="@{record_lost.do(id=${recordList.id},bisbn=${recordList.bisbn})}">丢失</a></td>
+
     </tr>
 
 </table>

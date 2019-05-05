@@ -58,7 +58,7 @@ public class RecordServiceImpl implements IRecordService {
         return ServerResponse.createBySuccess("success",pageInfo);
     }
 
-//办理归还
+        //办理归还
         public ServerResponse back(int id,int bisbn){
            // int result = recordMapper.back(record);
             //if(result > 0){
@@ -69,9 +69,23 @@ public class RecordServiceImpl implements IRecordService {
                         if(result > 0){
                             return ServerResponse.createBySuccessMessage("还书成功");
                         }
-                        return ServerResponse.createByErrorMessage("借书失败");
+                        return ServerResponse.createByErrorMessage("还书失败");
                 }
-            return ServerResponse.createByErrorMessage("借书失败");
+            return ServerResponse.createByErrorMessage("还书失败");
+        }
+
+        //办理丢失
+        public ServerResponse lost(int id,int bisbn){
+
+            int updateResult = bookMapper.updateBackNumberLost(bisbn);
+            if( updateResult > 0) {
+                int result = recordMapper.back(id);
+                if(result > 0){
+                    return ServerResponse.createBySuccessMessage("还书成功！");
+                }
+                return ServerResponse.createByErrorMessage("还书失败！");
+            }
+            return ServerResponse.createByErrorMessage("还书失败！");
         }
 
 

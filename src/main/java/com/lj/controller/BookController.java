@@ -36,9 +36,9 @@ public class BookController {
     @RequestMapping(value = "headerHtml.do", method = RequestMethod.GET)
     public String headerHtml(){ return "header"; }*/
 
-    @RequestMapping(value = "bookHtml.do", method = RequestMethod.GET)
-    public String bookHtml(){ return "book"; }
-
+/*    @RequestMapping(value = "bookHtml.do", method = RequestMethod.GET)
+    public String bookHtml(){ return "book"; }*/
+    //增加图书
     @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse  addBooks(Book book, MultipartFile file){
@@ -71,31 +71,33 @@ public class BookController {
 //    @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
 //    public String updateBookHtml(){return "updateBook";}
 
+    //更新图书
     @RequestMapping(value = "updateBook.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse updateBook(Book book){
         if (book.getBisbn() == null || book.getBname()==null || book.getBwriter()==null
                 || book.getBnumber()==null || book.getBoutnumber()==null || book.getBsort()==null
                 || book.getBpub()==null || book.getBprice()==null || book.getBintro()==null) {
-            return ServerResponse.createByErrorMessage("新增失败,请检查图书信息是否都填写了");
+            return ServerResponse.createByErrorMessage("修改失败,请检查图书信息是否都填写了");
 
         }
 
         return  iBookService.updateBook(book);}
-
+/*  删除测试
     @RequestMapping(value = "deleteHtml.do",method = RequestMethod.GET)
-    public String deleteHtml(){return "delete";}
+    public String deleteHtml(){return "delete";}*/
 
+    //删除图书
     @RequestMapping(value = "delete.do",method = RequestMethod.GET)
     @ResponseBody
     public String delete(Integer bIsbn){return iBookService.delete(bIsbn);
     }
-
+/*
     @RequestMapping(value = "listBookHtml.do", method = RequestMethod.GET)
-    public String listBookHtml(){return "listBook";}
+    public String listBookHtml(){return "listBook";}*/
 
     //分页显示,此为首页分页
-    @RequestMapping(value = "/listBook.do",method = RequestMethod.GET)
+    @RequestMapping(value = {"/listBook.do","/","index.html","index"},method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
     public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
         ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
@@ -185,7 +187,7 @@ public class BookController {
         return "booksearch";
     }*/
 
-    //查询图书
+    //查询图书分页显示
     @RequestMapping(value = "/findBooks.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
     public String searchBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model,String bsearch,HttpSession session){

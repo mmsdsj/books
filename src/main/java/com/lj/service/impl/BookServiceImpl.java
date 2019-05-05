@@ -31,12 +31,16 @@ public class BookServiceImpl implements IBookService {
     }
 
     public ServerResponse updateBook(Book books){
+        Book result1 = bookMapper.checkBisbn(books.getBisbn());
+        if (result1 ==null) {
+            return ServerResponse.createByErrorMessage("修改失败,查询不到该isbn号！");
+        }
         int result = bookMapper.updateBook(books);
         if(result > 0){
-            return ServerResponse.createBySuccessMessage("新增成功");
+            return ServerResponse.createBySuccessMessage("修改成功");
 
         }else {
-            return ServerResponse.createByErrorMessage("新增失败");
+            return ServerResponse.createByErrorMessage("修改失败");
         }
 
     }

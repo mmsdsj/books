@@ -39,8 +39,8 @@ public class ReaderController {
 
     @RequestMapping(value = "register.do", method = RequestMethod.GET)
     public String register(Reader reader,Model model) {
-        if (reader.getRname() == null || reader.getRname().isEmpty()) {
-            model.addAttribute("registerError","用户名或密码不能为空");
+        if (reader.getRname().length() < 6) {
+            model.addAttribute("registerError","账号不能少于6位");
             return "reader/register_error";
         }
         if (reader.getRpwd().length() < 6) {
@@ -92,7 +92,7 @@ public class ReaderController {
 
             return "reader";
         }
-        model.addAttribute("registerError","密码错误");
+        model.addAttribute("registerError","账号或密码错误");
 
         return "reader/register_error";
 
