@@ -36,11 +36,13 @@ public class ReaderServiceImpl implements IReaderService {
     }
 
     public String updateReader(Reader reader){
+        if (reader.getRpwd().length()>5){
         int result = readerMapper.updateReader(reader);
         if(result > 0){
             return "success";
         }
-            return "fail";
+            return "fail";}
+            return "密码应大于6位数";
 
     }
 

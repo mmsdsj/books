@@ -50,7 +50,8 @@ public class ManagerController {
             /*model.addAttribute("mname", mname);*/
             return "manager";
         }
-        return "error";
+        model.addAttribute("registerError","账号或密码错误");
+        return "reader/register_error";
 
     }
 }
